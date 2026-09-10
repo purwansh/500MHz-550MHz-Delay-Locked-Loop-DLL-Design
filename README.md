@@ -1,5 +1,6 @@
-# 500MHz-550MHz-Delay-Locked-Loop-DLL-Design
-This repository contains the design, implementation, and characterization of a 500MHz to 550MHz Delay-Locked Loop (DLL)[cite: 2]. This project was completed as Design Project #1 for the course EE698G: Circuit design for frequency and phase synthesis by Purwansh Sahu (Roll No. 251040079)
+# 500MHz – 550MHz Delay-Locked Loop (DLL) Design
+
+This repository contains the design, implementation, and characterization of a 500MHz to 550MHz Delay-Locked Loop (DLL). This project was completed as Design Project #1 for the course EE698G: Circuit design for frequency and phase synthesis by Purwansh Sahu (Roll No. 251040079). 
 
 ## Specifications and Requirements
 
@@ -18,15 +19,22 @@ This repository contains the design, implementation, and characterization of a 5
 * **Design Process:** The delay was calculated to support the target 500 MHz to 550 MHz frequency range. Transistors in each stage were optimized to ensure low-to-high and high-to-low propagation delays are approximately equal, maintaining a 50% duty cycle. 
 * **Verification:** The 20-stage chain was sized to achieve the required 1.818 ns to 2.0 ns delay across Typical, Fast, and Slow process corners within the specified 0.4V to 1.4V control voltage range.
 
-![Transistor Level Current-Starved Inverter Schematic](Figure_2_VCDL_Schematic.png)
+![Transistor Level Current-Starved Inverter Schematic](Figure_1_Inverter_Schematic.png..png)
 *Figure 1: Transistor level current-starved inverter schematic*
 
-![Complete VCDL Schematic](images/Figure_2_VCDL_Schematic.png)
+![Complete VCDL Schematic](Figure_2_VCDL_Schematic.png)
 *Figure 2: Complete VCDL schematic with a 20-stage current-starved inverter chain*
 
 ### VCDL Characterization Plots
-![VCDL Characterization Plots](images/Plots_1_2_3_VCDL_Characterization.png)
-*Plots: tpLH vs Vc, Kdl vs Vc, and Power vs Vc for the VCDL*
+
+![tpLH vs Vc](tplhvsvc.png)
+*Plot 1: tpLH vs Vc for VCDL*
+
+![Kdl vs Vc](kdlvsvc.png)
+*Plot 2: Kdl vs Vc for VCDL*
+
+![Power vs Vc](pdlvsvc.png)
+*Plot 3: Pdl vs Vc for VCDL*
 
 ## 2. Phase Frequency Detector (PFD)
 
@@ -34,7 +42,7 @@ This repository contains the design, implementation, and characterization of a 5
 * **Startup Stability:** An additional DFF was added to the D-input of the reference clock flip-flop to skip the first edge of the reference clock, preventing the system from locking onto unstable signals during power-up.
 * **Dead Zone Elimination:** A specific delay (tdel) was tuned within the AND gate to eliminate the PFD "dead zone". This keeps the UP and DN pulses active long enough for the charge pump to respond when clocks are nearly aligned, minimizing Static Phase Offset (SPO).
 
-![PFD Schematic](images/Figure_3_PFD_Schematic.png)
+![PFD Schematic](Figure_3_PFD_Schematic.png)
 *Figure 3: Schematic of PFD using three D-Flip-Flops and an AND gate*
 
 ## 3. Charge Pump (CP) & Loop Filter
@@ -44,7 +52,7 @@ This repository contains the design, implementation, and characterization of a 5
 * **Current Matching:** An ideal Op-Amp biases the PMOS transistors to keep the drain voltages of the NMOS and PMOS current sources equal. This improves current matching and is essential for achieving a low SPO.
 * **Loop Filter:** A 10 pF capacitor integrates the charge pump current into the control voltage (Vc). A PMOS switch initializes the capacitor charge to 1.8V upon reset to speed up locking.
 
-![Charge Pump Schematic](images/Figure_4_Charge_Pump_Schematic.png)
+![Charge Pump Schematic](Figure_4_Charge_Pump_Schematic.png)
 *Figure 4: Schematic of Charge Pump using a 20µA current source*
 
 ## 4. Overall DLL Performance & Results
@@ -78,15 +86,15 @@ The design successfully maintained an SPO well below the 25 ps target limit acro
 ### Transient Response Plots
 
 #### Fast (FF) Corner
-![Fast Corner Transient Response](images/Plot_4a_FF_Transient.png)
+![Fast Corner Transient Response](Plot_4a_FF_Transient.png)
 *Plot 4(a): Full transient response at Fast (FF) corner showing Vc settling around 0.4V*
 
-![Fast Corner SPO](images/Plot_4b_FF_SPO.png)
+![Fast Corner SPO](Plot_4b_FF_SPO.png)
 *Plot 4(b): Zoomed-in view of reference clock and DLL output at Fast (FF) corner showing 13.3 ps SPO*
 
 #### Slow (SS) Corner
-![Slow Corner Transient Response](images/Plot_5a_SS_Transient.png)
+![Slow Corner Transient Response](Plot_5a_SS_Transient.png)
 *Plot 5(a): Full transient response at Slow (SS) corner showing Vc settling around 1.305V*
 
-![Slow Corner SPO](images/Plot_5b_SS_SPO.png)
+![Slow Corner SPO](Plot_5b_SS_SPO.png)
 *Plot 5(b): Zoomed-in view of reference clock and DLL output at Slow (SS) corner showing 3.65 ps SPO*
