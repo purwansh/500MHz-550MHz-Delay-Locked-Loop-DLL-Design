@@ -18,7 +18,7 @@ This repository contains the design, implementation, and characterization of a 5
 * **Design Process:** The delay was calculated to support the target 500 MHz to 550 MHz frequency range. Transistors in each stage were optimized to ensure low-to-high and high-to-low propagation delays are approximately equal, maintaining a 50% duty cycle. 
 * **Verification:** The 20-stage chain was sized to achieve the required 1.818 ns to 2.0 ns delay across Typical, Fast, and Slow process corners within the specified 0.4V to 1.4V control voltage range.
 
-![Transistor Level Current-Starved Inverter Schematic](images/Figure_1_Inverter_Schematic.png)
+![Transistor Level Current-Starved Inverter Schematic](Figure_2_VCDL_Schematic.png)
 *Figure 1: Transistor level current-starved inverter schematic*
 
 ![Complete VCDL Schematic](images/Figure_2_VCDL_Schematic.png)
